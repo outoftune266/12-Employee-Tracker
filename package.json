@@ -1,0 +1,24 @@
+{
+  "name": "employee-tracker",
+  "version": "1.0.0",
+  "description": "cms for keeping track of employees",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/outoftune266/12-Employee-Tracker.git"
+  },
+  "author": "Zak Monnet",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/outoftune266/12-Employee-Tracker/issues"
+  },
+  "homepage": "https://github.com/outoftune266/12-Employee-Tracker#readme",
+  "dependencies": {
+    "console.table": "^0.10.0",
+    "inquirer": "^7.3.3",
+    "mysql": "^2.18.1"
+  }
+}
