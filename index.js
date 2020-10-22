@@ -49,6 +49,7 @@ function viewChoices() {
         choices: ["Departments", "Roles", "Employees", "Exit to main menu"],
         name: "choice"
     }).then(response => {
+        // needs some type async/await
         if (response.choice === "Departments") {  
             viewDepartments();
             viewChoices();
