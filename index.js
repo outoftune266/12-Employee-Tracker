@@ -1,6 +1,8 @@
 const mysql = require("mysql");
 const inquirer = require("inquirer");
 const consoletable = require("console.table");
+const {viewDepartments, viewRoles, viewEmployees} = require("./view");
+const {addDepartment, addRole, addEmployee} = require("./add");
 
 const connection = mysql.createConnection({
     host: "localhost",
@@ -49,10 +51,13 @@ function viewChoices() {
     }).then(response => {
         if (response.choice === "Departments") {
             viewDepartments();
+            viewChoices();
         } else if (response.choice === "Roles") {
             viewRoles();
+            viewChoices();
         } else if (response.choice === "Employees") {
             viewEmployees();
+            viewChoices();
         } else if (response.choice === "Exit to main menu") {
             startApp();
         };
@@ -68,10 +73,13 @@ function addChoices() {
     }).then(response => {
         if (response.choice === "Add new Departments") {
             addDepartment();
+            addChoices();
         } else if (response.choice === "Add new Roles") {
             addRole();
+            addChoices();
         } else if (response.choice === "Add new Employees") {
             addEmployee();
+            addChoices();
         } else if (response.choice === "Exit to main menu") {
             startApp();
         };

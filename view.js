@@ -1,14 +1,18 @@
-function viewDepartments() {
-    console.log("Running function...")
-    viewChoices();
-};
+module.exports = {
 
-function viewRoles() {
-    console.log("Running function...")
-    viewChoices();
-};
+viewDepartments: () => {
+    
+    console.log("Running function...");
+},
 
-function viewEmployees() {
+viewRoles: () => {
     console.log("Running function...")
-    viewChoices();
+    
+},
+
+viewEmployees: () => {
+    console.log("Running function...")
+    
+},
+
 };

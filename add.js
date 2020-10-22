@@ -1,15 +1,19 @@
-function addDepartment() {
-    console.log("Running function...")
-    addChoices();
-};
+module.exports = {
 
-function addRole() {
+addDepartment: () => {
     console.log("Running function...")
-    addChoices();
-};
+    
+},
 
-function addEmployee() {
+addRole: () => {
     console.log("Running function...")
-    addChoices();
+    
+},
+
+addEmployee: () => {
+    console.log("Running function...")
+    
+},
+
 };
 
