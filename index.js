@@ -49,7 +49,7 @@ function viewChoices() {
         choices: ["Departments", "Roles", "Employees", "Exit to main menu"],
         name: "choice"
     }).then(response => {
-        if (response.choice === "Departments") {
+        if (response.choice === "Departments") {  
             viewDepartments();
             viewChoices();
         } else if (response.choice === "Roles") {
