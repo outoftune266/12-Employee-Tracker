@@ -21,5 +21,72 @@ connection.connect(function (err) {
 });
 
 function startApp() {
-    connection.end()
-}
+    console.log("Welcome to the Employee Management System")
+    prompt({
+        type: "list",
+        message: "What function would you like to preform?",
+        choices: ["View Departments/Roles/Employees", "Add Departments/Roles/Employees", "Update Employee Roles", "Quit"],
+        name: "choice"
+    }).then(response => {
+        if (response.choice === "View Departments/Roles/Employees") {
+            viewChoices();
+        } else if (response.choice === "Add Departments/Roles/Employees") {
+            addChoices();
+        } else if (response.choice === "Update Employee Roles") {
+            updateRole();
+        } else if (response.choice === "Quit") {
+        connection.end();
+        };
+    });
+};
+
+function viewChoices() {
+    prompt({
+        type: "list",
+        message: "What information do you want to view?",
+        choices: ["Departments", "Roles", "Employees", "Exit to main menu"],
+        name: "choice"
+    }).then(response => {
+        if (response.choice === "Departments") {
+
+        } else if (response.choice === "Roles") {
+
+        } else if (response.choice === "Employees") {
+
+        } else if (response.choice === "Exit to main menu") {
+            startApp();
+        };
+    });
+};
+
+function addChoices() {
+    prompt({
+        type: "list",
+        message: "What type of information do you want to add?",
+        choices: ["Add new Departments", "Add new Roles", "Add new Employees", "Exit to main menu"],
+        name: "choice"
+    }).then(response => {
+        if (response.choice === "Add new Departments") {
+
+        } else if (response.choice === "Add new Roles") {
+
+        } else if (response.choice === "Add new Employees") {
+
+        } else if (response.choice === "Exit to main menu") {
+            startApp();
+        };
+    });
+};
+
+function updateRole() {
+    prompt({
+        type: "list",
+        message: "Which Employee do you want to update roles for?",
+        choices: ["Exit to main menu"],
+        name: "choice"
+    }).then(response => {
+        if (response.choice === "Exit to main menu") {
+            startApp();
+        };
+    });
+};
