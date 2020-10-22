@@ -48,11 +48,11 @@ function viewChoices() {
         name: "choice"
     }).then(response => {
         if (response.choice === "Departments") {
-
+            viewDepartments();
         } else if (response.choice === "Roles") {
-
+            viewRoles();
         } else if (response.choice === "Employees") {
-
+            viewEmployees();
         } else if (response.choice === "Exit to main menu") {
             startApp();
         };
@@ -67,11 +67,11 @@ function addChoices() {
         name: "choice"
     }).then(response => {
         if (response.choice === "Add new Departments") {
-
+            addDepartment();
         } else if (response.choice === "Add new Roles") {
-
+            addRole();
         } else if (response.choice === "Add new Employees") {
-
+            addEmployee();
         } else if (response.choice === "Exit to main menu") {
             startApp();
         };
