@@ -1,6 +1,6 @@
 const mysql = require("mysql");
 const inquirer = require("inquirer");
-const consoletable = require("console.table");
+const cTable = require("console.table");
 const {viewDepartments, viewRoles, viewEmployees} = require("./view");
 const {addDepartment, addRole, addEmployee} = require("./add");
 
@@ -49,16 +49,12 @@ function viewChoices() {
         choices: ["Departments", "Roles", "Employees", "Exit to main menu"],
         name: "choice"
     }).then(response => {
-        // needs some type async/await
         if (response.choice === "Departments") {  
-            viewDepartments();
-            viewChoices();
+            viewDepartments(viewChoices);
         } else if (response.choice === "Roles") {
-            viewRoles();
-            viewChoices();
+            viewRoles(viewChoices);
         } else if (response.choice === "Employees") {
-            viewEmployees();
-            viewChoices();
+            viewEmployees(viewChoices);
         } else if (response.choice === "Exit to main menu") {
             startApp();
         };
@@ -99,3 +95,5 @@ function updateRole() {
         };
     });
 };
+
+module.exports = viewDepartments;
