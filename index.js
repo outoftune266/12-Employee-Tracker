@@ -1,8 +1,9 @@
+// Dependencies
 const mysql = require("mysql");
 const inquirer = require("inquirer");
 const cTable = require("console.table");
-const {viewDepartments, viewRoles, viewEmployees} = require("./view");
-const {addDepartment, addRole, addEmployee} = require("./add");
+const { viewDepartments, viewRoles, viewEmployees } = require("./view");
+const { addDepartment, addRole, addEmployee } = require("./add");
 
 const connection = mysql.createConnection({
     host: "localhost",
@@ -12,7 +13,7 @@ const connection = mysql.createConnection({
     user: "root",
 
     password: "octogon86",
-    database: "top_songsDB"
+    database: "employee_db"
 });
 
 var prompt = inquirer.createPromptModule();
@@ -37,7 +38,7 @@ function startApp() {
         } else if (response.choice === "Update Employee Roles") {
             updateRole();
         } else if (response.choice === "Quit") {
-        connection.end();
+            connection.end();
         };
     });
 };
@@ -49,7 +50,7 @@ function viewChoices() {
         choices: ["Departments", "Roles", "Employees", "Exit to main menu"],
         name: "choice"
     }).then(response => {
-        if (response.choice === "Departments") {  
+        if (response.choice === "Departments") {
             viewDepartments(viewChoices);
         } else if (response.choice === "Roles") {
             viewRoles(viewChoices);
@@ -70,13 +71,10 @@ function addChoices() {
     }).then(response => {
         if (response.choice === "Add new Departments") {
             addDepartment(addChoices);
-            //addChoices();
         } else if (response.choice === "Add new Roles") {
             addRole(addChoices);
-            //addChoices();
         } else if (response.choice === "Add new Employees") {
             addEmployee(addChoices);
-            //addChoices();
         } else if (response.choice === "Exit to main menu") {
             startApp();
         };
@@ -84,16 +82,30 @@ function addChoices() {
 };
 
 function updateRole() {
-    prompt({
-        type: "list",
-        message: "Which Employee do you want to update roles for?",
-        choices: ["Exit to main menu"],
-        name: "choice"
-    }).then(response => {
-        if (response.choice === "Exit to main menu") {
-            startApp();
-        };
+    let employees;
+    let toUpdate;
+    connection.query("SELECT employee.id, employee.first_name, employee.last_ FROM employee INNER JOIN role", async function (err, res) {
+        if (err) throw err;
+        employees = await res;
+        console.table(employees);
+        prompt([{
+            type: "number",
+            message: "What is the id of the Employee do you want to update roles for?",
+            name: "id"
+        },
+        {
+            type:
+        }]).then(response => {
+            for (var i = 0; i < employees.length; i++) {
+                if (employees[i].id = response.id) {
+                    toUpdate = employees[i].id;
+                };
+            };
+        });
+        connection.end();
     });
+
+
 };
 
-module.exports = viewDepartments;
+// module.exports = viewDepartments;
