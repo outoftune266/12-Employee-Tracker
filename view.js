@@ -21,7 +21,7 @@ module.exports = {
         //console.log("Running function...");
         connection.query("SELECT * FROM department", async function (err, res) {
             if (err) throw err;
-            departments = await res;
+            let departments = await res;
             console.table(departments);
             viewChoices();
         });
@@ -31,8 +31,8 @@ module.exports = {
         //console.log("Running function...")
         connection.query("SELECT * FROM role", async function (err, res) {
             if (err) throw err;
-            departments = await res;
-            console.table(departments);
+            let roles = await res;
+            console.table(roles);
             viewChoices();
         });
     },
@@ -41,8 +41,8 @@ module.exports = {
         //console.log("Running function...")
         connection.query("SELECT * FROM employee", async function (err, res) {
             if (err) throw err;
-            departments = await res;
-            console.table(departments);
+            let employees = await res;
+            console.table(employees);
             viewChoices();
         });
     },

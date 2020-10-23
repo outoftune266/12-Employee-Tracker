@@ -11,7 +11,7 @@ const connection = mysql.createConnection({
 
     user: "root",
 
-    password: "",
+    password: "octogon86",
     database: "top_songsDB"
 });
 
@@ -69,14 +69,14 @@ function addChoices() {
         name: "choice"
     }).then(response => {
         if (response.choice === "Add new Departments") {
-            addDepartment();
-            addChoices();
+            addDepartment(addChoices);
+            //addChoices();
         } else if (response.choice === "Add new Roles") {
-            addRole();
-            addChoices();
+            addRole(addChoices);
+            //addChoices();
         } else if (response.choice === "Add new Employees") {
-            addEmployee();
-            addChoices();
+            addEmployee(addChoices);
+            //addChoices();
         } else if (response.choice === "Exit to main menu") {
             startApp();
         };
