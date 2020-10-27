@@ -6,7 +6,7 @@ VALUES  ("Admin"), ("Store");
 INSERT INTO role (title, salary, department_id)
     VALUES 
         ("CEO", 70000, 1), 
-        ("Human Resources Lead", 70000, 1), 
+        ("Human Resources Lead", 70000, 1),
         ("Store Lead", 70000, 2), 
         ("Stocker", 70000, 2), 
         ("Salesperson", 70000, 2);

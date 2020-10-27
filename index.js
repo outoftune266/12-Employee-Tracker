@@ -36,9 +36,10 @@ function startApp() {
         } else if (response.choice === "Add Departments/Roles/Employees") {
             addChoices();
         } else if (response.choice === "Update Employee Roles") {
-            updateRole();
+            getEmployees();
         } else if (response.choice === "Quit") {
             connection.end();
+            process.exit();
         };
     });
 };
@@ -81,31 +82,74 @@ function addChoices() {
     });
 };
 
-function updateRole() {
-    let employees;
-    let toUpdate;
-    connection.query("SELECT employee.id, employee.first_name, employee.last_ FROM employee INNER JOIN role", async function (err, res) {
-        if (err) throw err;
-        employees = await res;
-        console.table(employees);
-        prompt([{
-            type: "number",
-            message: "What is the id of the Employee do you want to update roles for?",
-            name: "id"
-        },
-        {
-            type:
-        }]).then(response => {
-            for (var i = 0; i < employees.length; i++) {
-                if (employees[i].id = response.id) {
-                    toUpdate = employees[i].id;
-                };
-            };
-        });
-        connection.end();
-    });
 
+let employeeList = [];
+let employeeQuestion = {
+    type: "list",
+    message: "What is the last name of the Employee do you want to update roles for?",
+    name: "employee"
+};
+let roleList = [];
+let roleQuestion = {
+    type: "list",
+    message: "What is the new Role you are assigning the employee to?",
+    name: "role"
+};
+let updateQuestions = [];
+let roles;
+
+function getEmployees() {
+    connection.query("SELECT * FROM employee", async function (err, res) {
+        if (err) throw err;
+        let employees = await res;
+        for (var i = 0; i < employees.length; i++) {
+            employeeList.push(res[i].last_name);
+        };
+        getRoles()
+    });
+};
+
+function getRoles() {
+    connection.query("SELECT * FROM role;", async function (err, res) {
+        if (err) throw err;
+        roles = await res;
+        for (var i = 0; i < roles.length; i++) {
+            roleList.push(roles[i].title);
+        };
+        console.log(roles);
+        combineQuestions();
+    });
 
 };
 
-// module.exports = viewDepartments;
+function combineQuestions() {
+    Object.assign(employeeQuestion, { choices: employeeList });
+    Object.assign(roleQuestion, { choices: roleList });
+    updateQuestions.push(employeeQuestion);
+    updateQuestions.push(roleQuestion);
+    //console.log(updateQuestions);
+    updateEmployee();
+};
+
+function updateEmployee() {
+    console.log(roleList);
+    //console.table(employees);
+    let roleID;
+    prompt(updateQuestions).then(response => {
+        console.log(response.role);
+        for (var i = 0; i < roles.length; i++) {
+            if (roles[i].title === response.role) {
+                roleID = roles[i].id;
+            };
+        };
+        connection.query("UPDATE employee SET role_id = ? WHERE last_name = ?;", [roleID, response.employee], async function (err, res) {
+            if (err) throw err;
+            let response = await res;
+            console.log(response);
+            viewEmployees(viewChoices);
+        });
+    });
+};
+
+
+
