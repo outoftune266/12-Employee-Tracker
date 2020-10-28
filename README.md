@@ -5,6 +5,8 @@
 Command Line CMS application to keep track of employees
 
 ## Preview
+![Preview of Application](./assets/preview.gif)
+
 [See a Demo](https://drive.google.com/file/d/1mvXcyVJiQKWJHvgn6-aZXds0yThjYTbD/view?usp=sharing)
 
         
