@@ -39,7 +39,7 @@ module.exports = {
 
     viewEmployees: (viewChoices) => {
         //console.log("Running function...")
-        connection.query("SELECT * FROM employee", async function (err, res) {
+        connection.query("SELECT employee.id, employee.first_name, employee.last_name, role.title FROM employee LEFT JOIN role ON employee.role_id = role.id;", async function (err, res) {
             if (err) throw err;
             let employees = await res;
             console.table(employees);

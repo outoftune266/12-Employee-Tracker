@@ -82,7 +82,7 @@ function addChoices() {
     });
 };
 
-
+// Variables used to update roles
 let employeeList = [];
 let employeeQuestion = {
     type: "list",
@@ -98,6 +98,7 @@ let roleQuestion = {
 let updateQuestions = [];
 let roles;
 
+// Functions that update roles
 function getEmployees() {
     connection.query("SELECT * FROM employee", async function (err, res) {
         if (err) throw err;
@@ -150,6 +151,3 @@ function updateEmployee() {
         });
     });
 };
-
-
-
