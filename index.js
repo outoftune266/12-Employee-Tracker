@@ -117,7 +117,7 @@ function getRoles() {
         for (var i = 0; i < roles.length; i++) {
             roleList.push(roles[i].title);
         };
-        console.log(roles);
+        //console.log(roles);
         combineQuestions();
     });
 
